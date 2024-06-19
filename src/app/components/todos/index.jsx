@@ -66,10 +66,7 @@ const ToDos = () => {
       <TaskModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        taskList={taskList}
         onPressAction={onPressAction}
-        task={task}
-        setTask={setTask}
         isInvalid={isInvalid}
         errorMessage={errorMessage}
       />

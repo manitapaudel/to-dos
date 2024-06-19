@@ -7,19 +7,19 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { useMemo, useState } from "react";
-import { setLocalStorage } from "../../utils";
+import { useContext } from "react";
+import { ModalContext } from "../../utils/context";
 
 const TaskModal = ({
   isOpen,
   onOpenChange,
   isEditForm = false,
   onPressAction,
-  task,
-  setTask,
   isInvalid,
   errorMessage,
 }) => {
+  const { task, setTask } = useContext(ModalContext);
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
