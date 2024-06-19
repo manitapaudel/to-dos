@@ -4,6 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
 
 import { CloseIcon, PlusIcon } from "../components/icons";
+import TaskList from "../components/task-list";
 
 const YourTodos = () => {
   const [task, setTask] = useState("");
@@ -52,6 +53,8 @@ const YourTodos = () => {
       ) : (
         ""
       )}
+
+      <TaskList />
     </div>
   );
 };
