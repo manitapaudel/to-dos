@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
+import { submitLogin } from "../../api/login/route";
 
 const initialState = {
   email: "",
@@ -13,6 +15,7 @@ const initialState = {
 const Login = () => {
   const [formValues, setFormValues] = useState(initialState);
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
   // View/Hide Password
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -24,8 +27,12 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await submitLogin(formValues);
+    console.log(response.message);
     console.log({ formValues });
+    router.push("/");
   };
 
   return (
