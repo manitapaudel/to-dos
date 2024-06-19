@@ -7,7 +7,7 @@ import { ModalContext } from "../../utils/context";
 import { isDuplicate, setLocalStorage } from "../../utils";
 
 const Task = ({ singleTask }) => {
-  const { task, setTask, taskList } = useContext(ModalContext);
+  const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const onPressAction = () => {
@@ -21,10 +21,17 @@ const Task = ({ singleTask }) => {
     } else {
       const filteredTasks = taskList.filter((item) => item !== singleTask);
       const updatedTasks = [...filteredTasks, task];
+      setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
       setTask("");
       onOpenChange(false);
     }
+  };
+
+  const handleDelete = () => {
+    const filteredTasks = taskList.filter((item) => item !== singleTask);
+    setTaskList(filteredTasks);
+    setLocalStorage("tasks", filteredTasks);
   };
 
   return (
@@ -38,6 +45,7 @@ const Task = ({ singleTask }) => {
               color="success"
               className="w-6 h-7"
               aria-label="Done Task"
+              onClick={handleDelete}
             >
               <CheckIcon />
             </Button>

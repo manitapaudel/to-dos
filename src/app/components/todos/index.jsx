@@ -29,6 +29,7 @@ const ToDos = () => {
       setErrorMessage("This task already exists");
     } else {
       const updatedTasks = [...taskList, task];
+      setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
       setTask("");
       onOpenChange(false);
