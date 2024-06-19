@@ -7,7 +7,7 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-10">
         <Card>
           <CardBody>
             <div className="flex justify-between">
@@ -19,7 +19,7 @@ const TaskList = () => {
                   isIconOnly
                   color="success"
                   className="w-8 h-8"
-                  aria-label="Done"
+                  aria-label="Done Task"
                 >
                   <CheckIcon />
                 </Button>

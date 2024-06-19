@@ -1,14 +1,21 @@
 "use client";
 
 import { Button, useDisclosure } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import { getLocalStorage } from "../utils";
 import { PlusIcon } from "../components/icons";
 import TaskList from "../components/task-list";
 import TaskModal from "../components/task-modal";
 
 const YourTodos = () => {
-  const [showInput, setShowInput] = useState(false);
+  const [taskList, setTaskList] = useState([]);
+
+  useEffect(() => {
+    const localStorageItem = getLocalStorage("tasks", []);
+    console.log("Hi there", localStorageItem);
+    // setTaskList(getLocalStorage("tasks", []));
+  }, []);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -29,9 +36,13 @@ const YourTodos = () => {
           </Button>
         </div>
 
-        <TaskList />
+        <TaskList taskList={taskList} />
       </div>
-      <TaskModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <TaskModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        taskList={taskList}
+      />
     </>
   );
 };

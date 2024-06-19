@@ -8,17 +8,20 @@ import {
   Input,
 } from "@nextui-org/react";
 import { useState } from "react";
+import { setLocalStorage } from "../../utils";
 
 const TaskModal = ({
   isOpen,
   onOpenChange,
   initialTaskState = "",
   isEditForm = false,
+  taskList,
 }) => {
   const [task, setTask] = useState(initialTaskState);
 
   const handleSaveTask = () => {
-    console.log("Task added!", task);
+    const updatedTasks = [...taskList, task];
+    setLocalStorage("tasks", updatedTasks);
     setTask("");
     onOpenChange(false);
   };
