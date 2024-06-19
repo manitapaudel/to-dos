@@ -1,4 +1,4 @@
-const CheckIcon = ({ className = "w-6 h-6" }) => {
+const CheckIcon = ({ className = "w-4 h-4" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

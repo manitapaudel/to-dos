@@ -8,7 +8,7 @@ const Task = ({ task }) => {
   const onPressAction = () => {};
 
   return (
-    <Card>
+    <Card className="mt-4">
       <CardBody>
         <div className="flex justify-between">
           <p>{task}</p>
@@ -16,7 +16,7 @@ const Task = ({ task }) => {
             <Button
               isIconOnly
               color="success"
-              className="w-8 h-8"
+              className="w-6 h-7"
               aria-label="Done Task"
             >
               <CheckIcon />
@@ -24,7 +24,7 @@ const Task = ({ task }) => {
             <Button
               isIconOnly
               color="warning"
-              className="w-8 h-8"
+              className="w-6 h-7"
               aria-label="Edit task"
               onPress={onOpen}
             >
