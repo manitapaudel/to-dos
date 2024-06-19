@@ -1,30 +1,30 @@
 "use client";
 
 import { Button, useDisclosure } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { getLocalStorage, isDuplicate, setLocalStorage } from "../../utils";
 import { PlusIcon } from "../icons";
 import Task from "../task";
 import TaskModal from "../task-modal";
+import { ModalContext } from "../../utils/context";
 
 const ToDos = () => {
-  const [taskList, setTaskList] = useState([]);
-  const [task, setTask] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setTaskList(getLocalStorage("tasks", []));
   }, [task]);
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const onPressAction = () => {
     if (task === "") {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
-    } else if (isDuplicate(task)) {
+    } else if (isDuplicate(taskList, task)) {
       setIsInvalid(true);
       setErrorMessage("This task already exists");
     } else {
