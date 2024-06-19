@@ -7,25 +7,19 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { setLocalStorage } from "../../utils";
 
 const TaskModal = ({
   isOpen,
   onOpenChange,
-  initialTaskState = "",
   isEditForm = false,
-  taskList,
+  onPressAction,
+  task,
+  setTask,
+  isInvalid,
+  errorMessage,
 }) => {
-  const [task, setTask] = useState(initialTaskState);
-
-  const handleSaveTask = () => {
-    const updatedTasks = [...taskList, task];
-    setLocalStorage("tasks", updatedTasks);
-    setTask("");
-    onOpenChange(false);
-  };
-
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
@@ -42,7 +36,9 @@ const TaskModal = ({
                 label="Task name"
                 placeholder="Enter your task here"
                 className={`mt-5`}
-                color="success"
+                isInvalid={isInvalid}
+                color={isInvalid ? "danger" : "success"}
+                errorMessage={errorMessage}
                 onChange={(e) => setTask(e.target.value)}
               />
             </ModalBody>
@@ -50,7 +46,7 @@ const TaskModal = ({
               <Button color="danger" variant="light" onPress={onClose}>
                 Close
               </Button>
-              <Button color="success" onPress={handleSaveTask}>
+              <Button color="success" onPress={onPressAction}>
                 {isEditForm ? "Update" : "Add"} Task
               </Button>
             </ModalFooter>

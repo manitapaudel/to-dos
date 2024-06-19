@@ -1,7 +1,7 @@
 export const getLocalStorage = (key, initialValue) => {
   if (typeof window !== "undefined") {
     const value = JSON.parse(localStorage.getItem(key));
-    if (storedValue === null) {
+    if (value === null) {
       return initialValue;
     } else return value;
   } else {
