@@ -1,18 +1,16 @@
 "use client";
 
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
 
-import { CloseIcon, PlusIcon } from "../components/icons";
+import { PlusIcon } from "../components/icons";
 import TaskList from "../components/task-list";
+import TaskModal from "../components/task-modal";
 
 const YourTodos = () => {
-  const [task, setTask] = useState("");
   const [showInput, setShowInput] = useState(false);
 
-  const handleClick = () => {
-    setShowInput((prev) => !prev);
-  };
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleKeyDown = (e) => {
     console.log(e);
@@ -23,39 +21,25 @@ const YourTodos = () => {
   };
 
   return (
-    <div className="w-1/2 mx-auto my-32">
-      <h1 className="font-medium">
-        Looks like you don&apos;t have any to-dos yet.
-      </h1>
-      <Button
-        className="w-full"
-        variant="ghost"
-        color="success"
-        startContent={
-          showInput ? <CloseIcon /> : <PlusIcon className={"w-4 h-4"} />
-        }
-        onClick={handleClick}
-      >
-        {showInput ? "Close" : "Add Task"}
-      </Button>
-      {showInput ? (
-        <Input
-          isRequired
-          value={task}
-          type="text"
-          label="Task name"
-          placeholder="Enter your task here"
-          className={` mt-5`}
+    <>
+      <div className="w-1/2 mx-auto my-32">
+        <h1 className="font-medium">
+          Looks like you don&apos;t have any to-dos yet.
+        </h1>
+        <Button
+          className="w-full"
+          variant="ghost"
           color="success"
-          onChange={(e) => setTask(e.target.value)}
-          onKeyUp={handleKeyDown}
-        />
-      ) : (
-        ""
-      )}
+          startContent={<PlusIcon className={"w-4 h-4"} />}
+          onPress={onOpen}
+        >
+          Add Task
+        </Button>
 
-      <TaskList />
-    </div>
+        <TaskList />
+      </div>
+      <TaskModal isOpen={isOpen} onOpenChange={onOpenChange} />
+    </>
   );
 };
 
