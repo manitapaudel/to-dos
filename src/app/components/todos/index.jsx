@@ -54,7 +54,7 @@ const ToDos = () => {
 
         <div className="mt-10">
           {taskList.length ? (
-            taskList.map((task) => <Task key={task} task={task} />)
+            taskList.map((task) => <Task key={task} singleTask={task} />)
           ) : (
             <p className="font-medium text-lg">
               Looks like you haven&apos;t listed your tasks yet. Get started by

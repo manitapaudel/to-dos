@@ -17,6 +17,7 @@ const TaskModal = ({
   onPressAction,
   isInvalid,
   errorMessage,
+  initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
 
@@ -31,6 +32,7 @@ const TaskModal = ({
             <ModalBody>
               <Input
                 isRequired
+                defaultValue={initialTaskState || ""}
                 value={task}
                 type="text"
                 label="Task name"
