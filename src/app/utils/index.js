@@ -14,3 +14,10 @@ export const setLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
   }
 };
+
+export const isDuplicate = (array, searchItem) => {
+  const duplicate = array.find((item) => item === searchItem);
+  if (duplicate == undefined) {
+    return false;
+  } else return true;
+};
