@@ -28,11 +28,11 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     const response = await submitLogin(formValues);
     console.log(response.message);
-    console.log({ formValues });
-    router.push("/");
+    if (response.status === 200) {
+      router.push("/");
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { faker } from "@faker-js/faker";
+import { nanoid } from "nanoid";
 
 const randomEmail = faker.internet.email();
 const randomPassword = faker.internet.password();
@@ -10,25 +10,13 @@ console.log(
   randomPassword
 );
 
-// export async function POST(req) {
-//   const { email, password } = await req.json();
-
-//   if (email === randomEmail && password === randomPassword) {
-//     return NextResponse.json({ message: "Login Successful!" });
-//   } else {
-//     return NextResponse.json(
-//       { message: "Incorrect Email or Password" },
-//       { status: 401 }
-//     );
-//   }
-// }
-
 export async function submitLogin(formValues) {
   const { email, password } = formValues;
 
   if (email === randomEmail && password === randomPassword) {
-    return { message: "Login successful!" };
+    const sessionId = nanoid();
+    return { message: "Login successful!", status: 200 };
   } else {
-    return { message: "Invalid email or password" };
+    return { message: "Invalid email or password", status: 401 };
   }
 }
