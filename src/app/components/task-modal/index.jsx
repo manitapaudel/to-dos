@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Modal,
   ModalContent,
@@ -7,7 +8,7 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { useContext } from "react";
+
 import { ModalContext } from "../../utils/context";
 
 const TaskModal = ({
