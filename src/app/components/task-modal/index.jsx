@@ -23,7 +23,7 @@ const TaskModal = ({
   const { task, setTask } = useContext(ModalContext);
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
       <ModalContent>
         {(onClose) => (
           <>
