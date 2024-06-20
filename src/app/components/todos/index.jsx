@@ -37,14 +37,14 @@ const ToDos = () => {
   };
 
   return (
-    <>
-      <div className="w-1/3 mx-auto my-32 border border-2 border-green-400 px-4 py-10 rounded">
+    <div className="px-5">
+      <div className="sm:w-2/3 lg:w-1/2 mx-auto my-32 border border-2 border-green-400 px-4 py-10 rounded-md">
         <div className="flex items-center justify-between">
-          <h1 className="font-semibold text-2xl">
+          <h1 className="font-semibold text-3xl">
             To-<span>Dos</span>
           </h1>
           <Button
-            // variant="ghost"
+            variant="ghost"
             color="success"
             startContent={<PlusIcon className={"w-4 h-4"} />}
             onPress={onOpen}
@@ -57,10 +57,16 @@ const ToDos = () => {
           {taskList.length ? (
             taskList.map((task) => <Task key={task} singleTask={task} />)
           ) : (
-            <p className="font-medium text-lg">
-              Looks like you haven&apos;t listed your tasks yet. Get started by
-              adding one, right away!
-            </p>
+            <>
+              <h2 className="font-medium text-2xl">
+                Hey there! <span className="bg-green-300">Welcome.</span>
+              </h2>
+              <p className="text-lg mt-5">
+                Looks like you haven&apos;t listed your{" "}
+                <span className="bg-green-300">tasks</span> yet. Get started by
+                <span className="bg-green-300"> adding</span> one, right away!
+              </p>
+            </>
           )}
         </div>
       </div>
@@ -71,7 +77,7 @@ const ToDos = () => {
         isInvalid={isInvalid}
         errorMessage={errorMessage}
       />
-    </>
+    </div>
   );
 };
 
