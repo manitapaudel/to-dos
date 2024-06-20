@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
 import { submitLogin } from "../../api/login";
+import { getLocalStorage, setLocalStorage } from "../../utils";
 
 const initialState = {
   email: "",
@@ -20,6 +21,13 @@ const Login = () => {
   const router = useRouter();
   // View/Hide Password
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  useEffect(() => {
+    const userInfo = getLocalStorage("todoUserInfo", null);
+    if (userInfo !== null) {
+      router.push("/");
+    }
+  }, [router]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,8 +54,10 @@ const Login = () => {
       const response = await submitLogin(formValues);
       console.log(response.message);
       console.log({ formValues });
-      if (response.status === 200) router.push("/");
-      else console.log(response.message);
+      if (response.status === 200) {
+        setLocalStorage("todoUserInfo", { email: formValues.email });
+        router.push("/");
+      } else console.log(response.message);
     }
   };
 
