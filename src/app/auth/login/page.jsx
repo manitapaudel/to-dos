@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
-import { submitLogin } from "../../api/login/route";
+import { submitLogin } from "../../api/login";
 
 const initialState = {
   email: "",
