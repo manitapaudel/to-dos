@@ -6,7 +6,12 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        500: "500px",
+        // => @media (min-width: 500px) { ... }
+      },
+    },
   },
   plugins: [nextui()],
 };

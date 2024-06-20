@@ -52,66 +52,68 @@ const Login = () => {
   };
 
   return (
-    <div className="text-center border border-2 border-green-400 w-1/3 mx-auto my-32 py-10 px-6 rounded-lg">
-      <h1 className="font-medium text-2xl text-green-400 mb-2">LogIn</h1>
-      <p className="mb-5">
-        Please login to start tracking your{" "}
-        <span className="text-green-400 font-bold">To-dos</span>.
-      </p>
-      <section className="flex flex-col gap-6 ">
-        <Input
-          isRequired
-          name="email"
-          value={formValues.email}
-          type="email"
-          label="Email"
-          variant="bordered"
-          color={"success"}
-          placeholder="Enter your email"
-          isInvalid={errorMessages.email !== ""}
-          errorMessage={errorMessages.email}
-          onChange={handleChange}
-          className="text-left"
-        />
-        <Input
-          isRequired
-          name="password"
-          value={formValues.password}
-          label="Password"
-          variant="bordered"
-          color="success"
-          placeholder="Enter your password"
-          endContent={
-            <button
-              className="focus:outline-none"
-              type="button"
-              onClick={toggleVisibility}
-            >
-              {isVisible ? (
-                <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-              ) : (
-                <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-              )}
-            </button>
-          }
-          type={isVisible ? "text" : "password"}
-          isInvalid={errorMessages.password !== ""}
-          errorMessage={errorMessages.password}
-          onChange={handleChange}
-          className="text-left"
-        />
-        <div className="text-center">
-          <Button
-            color="success"
+    <main className="px-8 500:px-0">
+      <div className="text-center border border-2 border-green-400 w-full 500:w-2/3 md:w-1/2 xl:w-1/3 mx-auto my-16 sm:my-32 py-10 px-6 rounded-lg">
+        <h1 className="font-medium text-2xl text-green-400 mb-2">LogIn</h1>
+        <p className="mb-5">
+          Please login to start tracking your{" "}
+          <span className="text-green-400 font-bold">To-dos</span>.
+        </p>
+        <section className="flex flex-col gap-6 ">
+          <Input
+            isRequired
+            name="email"
+            value={formValues.email}
+            type="email"
+            label="Email"
             variant="bordered"
-            className="mt-6 w-1/2"
-            onClick={handleSubmit}
-          >
-            Login
-          </Button>
-        </div>
-      </section>
-    </div>
+            color={"success"}
+            placeholder="Enter your email"
+            isInvalid={errorMessages.email !== ""}
+            errorMessage={errorMessages.email}
+            onChange={handleChange}
+            className="text-left"
+          />
+          <Input
+            isRequired
+            name="password"
+            value={formValues.password}
+            label="Password"
+            variant="bordered"
+            color="success"
+            placeholder="Enter your password"
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={toggleVisibility}
+              >
+                {isVisible ? (
+                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisible ? "text" : "password"}
+            isInvalid={errorMessages.password !== ""}
+            errorMessage={errorMessages.password}
+            onChange={handleChange}
+            className="text-left"
+          />
+          <div className="text-center">
+            <Button
+              color="success"
+              variant="bordered"
+              className="mt-6 w-full 500:w-1/2"
+              onClick={handleSubmit}
+            >
+              Login
+            </Button>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 };
 

@@ -38,7 +38,7 @@ const ToDos = () => {
 
   return (
     <>
-      <div className="font-inter w-1/3 mx-auto my-32 border border-2 border-green-400 px-4 py-10 rounded-md">
+      <div className="w-1/2 xl:w-1/3 mx-auto my-32 border border-2 border-green-400 px-4 py-10 rounded-md">
         <div className="flex items-center justify-between">
           <h1 className="font-semibold text-3xl">
             To-<span>Dos</span>
