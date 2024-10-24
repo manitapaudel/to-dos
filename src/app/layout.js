@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inconsolata.variable} ${caveat.variable}`}>
+    <html lang="en" className="bg-baseDark bg-opacity-10">
+      <body className={`${inconsolata.variable} ${caveat.variable} `}>
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>

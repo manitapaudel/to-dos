@@ -63,7 +63,7 @@ const Login = () => {
 
   return (
     <main className="font-inconsolata text-baseDark px-8 500:px-0">
-      <div className="text-center border-2 border-accentDark w-full 500:w-2/3 md:w-1/2 xl:w-1/3 mx-auto my-16 sm:my-32 py-10 px-6 rounded-lg">
+      <div className="text-center border-2 border-accentDark bg-baseDark bg-opacity-5 w-full 500:w-2/3 md:w-1/2 xl:w-1/3 mx-auto my-16 sm:my-32 py-10 px-6 rounded-lg">
         <h1 className="font-caveat font-bold text-3xl text-primary mb-2">
           LogIn
         </h1>
