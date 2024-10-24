@@ -62,9 +62,11 @@ const Login = () => {
   };
 
   return (
-    <main className="px-8 500:px-0">
-      <div className="text-center border border-2 border-green-400 w-full 500:w-2/3 md:w-1/2 xl:w-1/3 mx-auto my-16 sm:my-32 py-10 px-6 rounded-lg">
-        <h1 className="font-medium text-2xl text-green-400 mb-2">LogIn</h1>
+    <main className="font-inconsolata px-8 500:px-0">
+      <div className="text-center border-2 border-green-400 w-full 500:w-2/3 md:w-1/2 xl:w-1/3 mx-auto my-16 sm:my-32 py-10 px-6 rounded-lg">
+        <h1 className="font-caveat font-medium text-2xl text-green-400 mb-2">
+          LogIn
+        </h1>
         <p className="mb-1">
           Please login to start tracking your{" "}
           <span className="text-green-400 font-bold">To-dos</span>.

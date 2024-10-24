@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        caveat: ["var(--font-caveat)"],
+        inconsolata: ["var(--font-inconsolata)"],
+      },
       screens: {
         500: "500px",
         // => @media (min-width: 500px) { ... }
