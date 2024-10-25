@@ -27,10 +27,10 @@ const TaskModal = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
+            <ModalHeader className="flex flex-col gap-1 text-baseDark bg-baseDark bg-opacity-10">
               {isEditForm ? "Edit your Task" : "Create a New Task"}
             </ModalHeader>
-            <ModalBody>
+            <ModalBody className="bg-baseDark bg-opacity-10">
               <Input
                 isRequired
                 defaultValue={initialTaskState || ""}
@@ -40,16 +40,21 @@ const TaskModal = ({
                 placeholder="Enter your task here"
                 className={`mt-5`}
                 isInvalid={isInvalid}
-                color={isInvalid ? "danger" : "success"}
+                color={isInvalid ? "danger" : "primary"}
+                variant="bordered"
                 errorMessage={errorMessage}
                 onChange={(e) => setTask(e.target.value)}
               />
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter className="bg-baseDark bg-opacity-10">
               <Button color="danger" variant="light" onPress={onClose}>
                 Close
               </Button>
-              <Button color="success" onPress={onPressAction}>
+              <Button
+                color="primary"
+                variant="bordered"
+                onPress={onPressAction}
+              >
                 {isEditForm ? "Update" : "Add"} Task
               </Button>
             </ModalFooter>
