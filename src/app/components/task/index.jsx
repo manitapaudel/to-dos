@@ -9,7 +9,7 @@ import {
 
 import { ModalContext } from "@/app/context/ModalContext";
 import { isDuplicate, setLocalStorage } from "@/app/utils";
-import { CheckIcon, EditIcon, TrashIcon } from "@/app/components/icons";
+import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
 
 const Task = ({ singleTask }) => {
@@ -48,7 +48,7 @@ const Task = ({ singleTask }) => {
             <Checkbox size="md" variant="primary" />
             <p className="text-lg">{singleTask}</p>
           </div>
-          <div div className="flex justify-between mt-3">
+          <div className="flex justify-between mt-3">
             <span className="flex items-center gap-1.5">
               <Button
                 isIconOnly
