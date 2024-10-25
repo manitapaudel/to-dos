@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { getLocalStorage } from "../../utils";
-import LoginForm from "../../components/login-form";
+import { getLocalStorage } from "@/app/utils";
+import LoginForm from "@/app/components/login-form";
 
 const Login = () => {
   const router = useRouter();

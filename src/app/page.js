@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getLocalStorage } from "../../src/app/utils";
-import { ModalContext } from "../../src/app/utils/context";
-import ToDos from "../../src/app/components/todos";
+import { getLocalStorage } from "@/app/utils";
+import { ModalContext } from "@/app/utils/context";
+import ToDos from "@/app/components/todos";
 
 const YourTodos = () => {
   const [taskList, setTaskList] = useState([]);

@@ -1,10 +1,10 @@
-import { Button, Input } from "@nextui-org/react";
-
-import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
-import { submitLogin } from "../../api/login";
-import { useState } from "react";
-import { setLocalStorage } from "../../utils";
 import { useRouter } from "next/navigation";
+import { Button, Input } from "@nextui-org/react";
+import { useState } from "react";
+
+import { submitLogin } from "@/app/api/login";
+import { setLocalStorage } from "@/app/utils";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "@/app/components/icons";
 
 const initialState = {
   email: "",
