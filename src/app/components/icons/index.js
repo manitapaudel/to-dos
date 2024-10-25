@@ -1,3 +1,4 @@
+export { default as CalendarIcon } from "./calendar-icon";
 export { default as CheckIcon } from "./check-icon";
 export { default as CloseIcon } from "./close-icon";
 export { default as EditIcon } from "./edit-icon";

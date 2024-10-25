@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/react";
 
 import { ModalContext } from "@/app/context/ModalContext";
+import { CalendarIcon, CheckIcon } from "@/app/components/icons";
 
 const TaskModal = ({
   isOpen,
@@ -21,6 +22,11 @@ const TaskModal = ({
   initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const toggleCalendar = () => {
+    setShowCalendar((prev) => !prev);
+  };
 
   return (
     <Modal
@@ -32,8 +38,8 @@ const TaskModal = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1 text-baseDark bg-baseDark bg-opacity-10">
-              {isEditForm ? "Edit your Task" : "Create a New Task"}
+            <ModalHeader className="flex justify-between text-baseDark bg-baseDark bg-opacity-10">
+              <p>{isEditForm ? "Edit your Task" : "Create a New Task"}</p>
             </ModalHeader>
             <ModalBody className="bg-baseDark bg-opacity-10">
               <Input
@@ -43,6 +49,29 @@ const TaskModal = ({
                 type="text"
                 label="Task name"
                 placeholder="Enter your task here"
+                className="mt-5 border border-accentDark rounded-xl"
+                isInvalid={isInvalid}
+                color={isInvalid ? "danger" : "primary"}
+                variant="bordered"
+                errorMessage={errorMessage}
+                onChange={(e) => setTask(e.target.value)}
+              />
+              <Input
+                isRequired
+                defaultValue={initialTaskState || ""}
+                value={task}
+                type="text"
+                label="Created Date"
+                placeholder="MM/DD/YYYY"
+                endContent={
+                  <button
+                    className="focus:outline-none bg-red w-5 h-5 text-primary"
+                    type="button"
+                    onClick={toggleCalendar}
+                  >
+                    <CalendarIcon />
+                  </button>
+                }
                 className="mt-5 border border-accentDark rounded-xl"
                 isInvalid={isInvalid}
                 color={isInvalid ? "danger" : "primary"}
@@ -61,6 +90,7 @@ const TaskModal = ({
                 Close
               </Button>
               <Button
+                type="submit"
                 color="primary"
                 variant="bordered"
                 onPress={onPressAction}
