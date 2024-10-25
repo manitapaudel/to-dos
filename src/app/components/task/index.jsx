@@ -41,19 +41,19 @@ const Task = ({ singleTask }) => {
   };
 
   return (
-    <Card className="mt-4">
+    <Card className="mt-4 bg-baseDark bg-opacity-15 border border-accentDark">
       <CardBody>
         <div className="">
           <div className="flex items-center">
-            <Checkbox size="md" variant="primary" />
-            <p className="text-lg">{singleTask}</p>
+            <Checkbox size="md" variant="primary" className="" />
+            <p className="text-lg font-medium">{singleTask}</p>
           </div>
           <div className="flex justify-between mt-3">
             <span className="flex items-center gap-1.5">
               <Button
                 isIconOnly
-                color="danger"
-                className="w-6 h-7"
+                // color="danger"
+                className="bg-accentLight border border-accentDark text-white w-6 h-7"
                 aria-label="Delete Task"
                 onClick={handleDelete}
               >
@@ -61,8 +61,8 @@ const Task = ({ singleTask }) => {
               </Button>
               <Button
                 isIconOnly
-                color="warning"
-                className="w-6 h-7"
+                // color="warning"
+                className="bg-primary border border-accentDark text-white w-6 h-7"
                 aria-label="Edit task"
                 onPress={onOpen}
               >
