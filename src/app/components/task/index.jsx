@@ -41,11 +41,11 @@ const Task = ({ singleTask }) => {
   };
 
   return (
-    <Card className="mt-4 bg-baseDark bg-opacity-15 border border-accentDark">
+    <Card className="mt-4 bg-baseDark bg-opacity-15 border border-accentDark px-3">
       <CardBody>
         <div className="">
-          <div className="flex items-center">
-            <Checkbox size="md" variant="primary" className="" />
+          <div className="flex items-start gap-2">
+            <Checkbox size="md" variant="primary" className="p-0 top-3" />
             <p className="text-lg font-medium">{singleTask}</p>
           </div>
           <div className="flex justify-between mt-3">
