@@ -54,7 +54,7 @@ const LoginForm = () => {
   };
 
   return (
-    <section className="flex flex-col gap-6 ">
+    <form className="flex flex-col gap-6">
       <Input
         isRequired
         name="email"
@@ -69,6 +69,7 @@ const LoginForm = () => {
         errorMessage={errorMessages.email}
         onChange={handleChange}
         className="text-left"
+        autoComplete="off"
       />
       <Input
         isRequired
@@ -97,6 +98,7 @@ const LoginForm = () => {
         errorMessage={errorMessages.password}
         onChange={handleChange}
         className="text-left"
+        autoComplete="current-password"
       />
       <div className="text-center">
         <Button
@@ -108,7 +110,7 @@ const LoginForm = () => {
           Log In
         </Button>
       </div>
-    </section>
+    </form>
   );
 };
 
