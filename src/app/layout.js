@@ -1,5 +1,5 @@
 import { NextUIProvider } from "@nextui-org/react";
-import { inconsolata, caveat } from "./fonts";
+import { inconsolata, caveat } from "@/app/fonts";
 import "./globals.css";
 
 export const metadata = {

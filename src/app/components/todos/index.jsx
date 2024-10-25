@@ -1,14 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 
-import { getLocalStorage, isDuplicate, setLocalStorage } from "../../utils";
-import { PlusIcon } from "../icons";
-import Task from "../task";
-import TaskModal from "../task-modal";
-import { ModalContext } from "../../utils/context";
-import Image from "next/image";
+import { ModalContext } from "@/app/context/ModalContext";
+import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
+import { PlusIcon } from "@/app/components/icons";
+import Task from "@/app/components/task";
+import TaskModal from "@/app/components/task-modal";
 
 const ToDos = () => {
   const [isInvalid, setIsInvalid] = useState(false);
