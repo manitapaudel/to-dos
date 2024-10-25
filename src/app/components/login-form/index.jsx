@@ -61,7 +61,7 @@ const LoginForm = () => {
         value={formValues.email}
         type="email"
         label="Email"
-        color={"success"}
+        color="primary"
         size="lg"
         variant="bordered"
         placeholder="Enter your email"
@@ -76,7 +76,7 @@ const LoginForm = () => {
         name="password"
         value={formValues.password}
         label="Password"
-        color="success"
+        color="primary"
         size="lg"
         variant="bordered"
         placeholder="Enter your password"
