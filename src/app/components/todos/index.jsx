@@ -39,7 +39,7 @@ const ToDos = () => {
 
   return (
     <div className="text-baseDark font-inconsolata px-5">
-      <div className="bg-baseDark bg-opacity-5 sm:w-2/3 lg:w-1/2 mx-auto my-32 border-2 border-accentDark px-4 py-10 rounded-md">
+      <div className="bg-baseDark bg-opacity-5 sm:w-2/3 lg:w-1/2 mx-auto my-8 500:my-28 border-2 border-accentDark px-4 py-10 rounded-md">
         <div className="flex items-center justify-between">
           <h1 className="font-caveat font-semibold text-primary text-3xl">
             To-<span>Dos</span>
