@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import {
+  Calendar,
   Modal,
   ModalContent,
   ModalHeader,
@@ -10,7 +11,7 @@ import {
 } from "@nextui-org/react";
 
 import { ModalContext } from "@/app/context/ModalContext";
-import { CalendarIcon, CheckIcon } from "@/app/components/icons";
+import { CalendarIcon } from "@/app/components/icons";
 
 const TaskModal = ({
   isOpen,
@@ -22,11 +23,7 @@ const TaskModal = ({
   initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
-  const [showCalendar, setShowCalendar] = useState(false);
-
-  const toggleCalendar = () => {
-    setShowCalendar((prev) => !prev);
-  };
+  const [date, setDate] = useState("");
 
   return (
     <Modal
@@ -39,7 +36,7 @@ const TaskModal = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex justify-between text-baseDark bg-baseDark bg-opacity-10">
-              <p>{isEditForm ? "Edit your Task" : "Create a New Task"}</p>
+              <h1>{isEditForm ? "Edit your Task" : "Create a New Task"}</h1>
             </ModalHeader>
             <ModalBody className="bg-baseDark bg-opacity-10">
               <Input
@@ -58,26 +55,26 @@ const TaskModal = ({
               />
               <Input
                 isRequired
-                defaultValue={initialTaskState || ""}
-                value={task}
+                defaultValue=""
+                value={date}
                 type="text"
-                label="Created Date"
+                label="Due Date"
                 placeholder="MM/DD/YYYY"
-                endContent={
-                  <button
-                    className="focus:outline-none bg-red w-5 h-5 text-primary"
-                    type="button"
-                    onClick={toggleCalendar}
-                  >
-                    <CalendarIcon />
-                  </button>
-                }
+                endContent={<CalendarIcon className="w-4 h-4 text-primary" />}
                 className="mt-5 border border-accentDark rounded-xl"
                 isInvalid={isInvalid}
                 color={isInvalid ? "danger" : "primary"}
                 variant="bordered"
                 errorMessage={errorMessage}
                 onChange={(e) => setTask(e.target.value)}
+              />
+              <h2 className="font-semibold text-baseDark mt-2">
+                Please pick a due date
+              </h2>
+              <Calendar
+                aria-label="Date (Controlled)"
+                value={date}
+                onChange={setDate}
               />
             </ModalBody>
             <ModalFooter className="bg-baseDark bg-opacity-10">
