@@ -23,7 +23,12 @@ const TaskModal = ({
   const { task, setTask } = useContext(ModalContext);
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      placement="center"
+      className="font-inconsolata"
+    >
       <ModalContent>
         {(onClose) => (
           <>
@@ -38,7 +43,7 @@ const TaskModal = ({
                 type="text"
                 label="Task name"
                 placeholder="Enter your task here"
-                className={`mt-5`}
+                className="mt-5 border border-accentDark rounded-xl"
                 isInvalid={isInvalid}
                 color={isInvalid ? "danger" : "primary"}
                 variant="bordered"
@@ -47,7 +52,12 @@ const TaskModal = ({
               />
             </ModalBody>
             <ModalFooter className="bg-baseDark bg-opacity-10">
-              <Button color="danger" variant="light" onPress={onClose}>
+              <Button
+                color="danger"
+                variant="light"
+                onPress={onClose}
+                className="font-semibold"
+              >
                 Close
               </Button>
               <Button

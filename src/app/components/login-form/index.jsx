@@ -68,7 +68,7 @@ const LoginForm = () => {
         isInvalid={errorMessages.email !== ""}
         errorMessage={errorMessages.email}
         onChange={handleChange}
-        className="text-left"
+        className="text-left border border-accentDark rounded-xl"
         autoComplete="off"
       />
       <Input
@@ -97,7 +97,7 @@ const LoginForm = () => {
         isInvalid={errorMessages.password !== ""}
         errorMessage={errorMessages.password}
         onChange={handleChange}
-        className="text-left"
+        className="text-left border border-accentDark rounded-xl"
         autoComplete="current-password"
       />
       <div className="text-center">
