@@ -9,7 +9,7 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { parseDate } from "@internationalized/date";
+import { CalendarDate, parseDate } from "@internationalized/date";
 
 import { ModalContext } from "@/app/context/ModalContext";
 import { CalendarIcon } from "@/app/components/icons";
@@ -24,7 +24,7 @@ const TaskModal = ({
   initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(parseDate("2024-10-25"));
 
   return (
     <Modal
