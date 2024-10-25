@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
 
-import { ModalContext } from "@/app/utils/context";
+import { ModalContext } from "@/app/context/ModalContext";
 import { isDuplicate, setLocalStorage } from "@/app/utils";
 import { CheckIcon, EditIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";

@@ -9,7 +9,7 @@ import {
   Input,
 } from "@nextui-org/react";
 
-import { ModalContext } from "@/app/utils/context";
+import { ModalContext } from "@/app/context/ModalContext";
 
 const TaskModal = ({
   isOpen,

@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 
-import { ModalContext } from "@/app/utils/context";
+import { ModalContext } from "@/app/context/ModalContext";
 import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
 import { PlusIcon } from "@/app/components/icons";
 import Task from "@/app/components/task";

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getLocalStorage } from "@/app/utils";
-import { ModalContext } from "@/app/utils/context";
+import { ModalContext } from "@/app/context/ModalContext";
 import ToDos from "@/app/components/todos";
 
 const YourTodos = () => {
