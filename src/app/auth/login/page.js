@@ -1,26 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-import { Button, Input } from "@nextui-org/react";
+import { useEffect } from "react";
 
-import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
-import { submitLogin } from "../../api/login";
-import { getLocalStorage, setLocalStorage } from "../../utils";
-
-const initialState = {
-  email: "",
-  password: "",
-};
+import { getLocalStorage } from "@/app/utils";
+import LoginForm from "@/app/components/login-form";
 
 const Login = () => {
-  const [formValues, setFormValues] = useState(initialState);
-  const [errorMessages, setErrorMessages] = useState(initialState);
-  const [isVisible, setIsVisible] = useState(false);
-
   const router = useRouter();
-  // View/Hide Password
-  const toggleVisibility = () => setIsVisible(!isVisible);
 
   useEffect(() => {
     const userInfo = getLocalStorage("todoUserInfo", null);
@@ -28,38 +15,6 @@ const Login = () => {
       router.push("/");
     }
   }, [router]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const validateFields = () => {
-    const errorsCopy = {};
-    errorsCopy.name = formValues.email ? "" : "Password is required.";
-    errorsCopy.email = /\S+@\S+\.\S+/.test(formValues.email)
-      ? ""
-      : "Email is not valid.";
-    errorsCopy.password = formValues.password ? "" : "Password is required.";
-    setErrorMessages(errorsCopy);
-    return Object.values(errorsCopy).every((x) => x === "");
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateFields()) {
-      const response = await submitLogin(formValues);
-      console.log(response.message);
-      console.log({ formValues });
-      if (response.status === 200) {
-        setLocalStorage("todoUserInfo", { email: formValues.email });
-        router.push("/");
-      } else console.log(response.message);
-    }
-  };
 
   return (
     <main className="font-inconsolata px-8 500:px-0">
@@ -74,61 +29,7 @@ const Login = () => {
         <p className="text-xs lg:text-sm mb-5">
           (Do check the console for the credentials.)
         </p>
-        <section className="flex flex-col gap-6 ">
-          <Input
-            isRequired
-            name="email"
-            value={formValues.email}
-            type="email"
-            label="Email"
-            color={"success"}
-            size="lg"
-            variant="bordered"
-            placeholder="Enter your email"
-            isInvalid={errorMessages.email !== ""}
-            errorMessage={errorMessages.email}
-            onChange={handleChange}
-            className="text-left"
-          />
-          <Input
-            isRequired
-            name="password"
-            value={formValues.password}
-            label="Password"
-            color="success"
-            size="lg"
-            variant="bordered"
-            placeholder="Enter your password"
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            isInvalid={errorMessages.password !== ""}
-            errorMessage={errorMessages.password}
-            onChange={handleChange}
-            className="text-left"
-          />
-          <div className="text-center">
-            <Button
-              color="success"
-              variant="bordered"
-              className="text-lg mt-6 w-full 500:w-1/2"
-              onClick={handleSubmit}
-            >
-              Log In
-            </Button>
-          </div>
-        </section>
+        <LoginForm />
       </div>
     </main>
   );
