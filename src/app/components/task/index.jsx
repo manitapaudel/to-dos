@@ -52,7 +52,6 @@ const Task = ({ singleTask }) => {
             <span className="flex items-center gap-1.5">
               <Button
                 isIconOnly
-                // color="danger"
                 className="bg-accentLight border border-accentDark text-white w-6 h-7"
                 aria-label="Delete Task"
                 onClick={handleDelete}
@@ -61,7 +60,6 @@ const Task = ({ singleTask }) => {
               </Button>
               <Button
                 isIconOnly
-                // color="warning"
                 className="bg-primary border border-accentDark text-white w-6 h-7"
                 aria-label="Edit task"
                 onPress={onOpen}
@@ -69,7 +67,7 @@ const Task = ({ singleTask }) => {
                 <EditIcon />
               </Button>
             </span>
-            <span className="text-sm text-primary">10/25/2024</span>
+            <span className="text-sm text-primary font-bold">10/25/2024</span>
           </div>
         </div>
       </CardBody>
