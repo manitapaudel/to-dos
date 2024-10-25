@@ -8,6 +8,7 @@ import { PlusIcon } from "../icons";
 import Task from "../task";
 import TaskModal from "../task-modal";
 import { ModalContext } from "../../utils/context";
+import Image from "next/image";
 
 const ToDos = () => {
   const [isInvalid, setIsInvalid] = useState(false);
@@ -57,16 +58,25 @@ const ToDos = () => {
           {taskList.length ? (
             taskList.map((task) => <Task key={task} singleTask={task} />)
           ) : (
-            <>
-              <h2 className="font-medium text-2xl">
-                Hey there! <span className="bg-green-300">Welcome.</span>
-              </h2>
-              <p className="text-lg mt-5">
-                Looks like you haven&apos;t listed your{" "}
-                <span className="bg-green-300">tasks</span> yet. Get started by
-                <span className="bg-green-300"> adding</span> one, right away!
-              </p>
-            </>
+            <div className="flex flex-col md:flex-row items-center gap-2 xl:gap-10">
+              <div className="relative shrink-0 w-64 h-64">
+                <Image
+                  src="/images/multitasking.svg"
+                  alt="A woman multitasking"
+                  fill
+                />
+              </div>
+              <div className="">
+                <h2 className="font-medium text-2xl">Hey there!</h2>
+                <p className="text-lg mt-5">
+                  Looks like you have a lot of{" "}
+                  <span className="bg-primary bg-opacity-40">tasks</span> at
+                  hand. Start by&nbsp;
+                  <span className="bg-primary bg-opacity-40">adding</span> one,
+                  right away!
+                </p>
+              </div>
+            </div>
           )}
         </div>
       </div>
