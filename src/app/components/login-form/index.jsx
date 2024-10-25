@@ -61,14 +61,14 @@ const LoginForm = () => {
         value={formValues.email}
         type="email"
         label="Email"
-        color={"success"}
+        color="primary"
         size="lg"
         variant="bordered"
         placeholder="Enter your email"
         isInvalid={errorMessages.email !== ""}
         errorMessage={errorMessages.email}
         onChange={handleChange}
-        className="text-left"
+        className="text-left border border-accentDark rounded-xl"
         autoComplete="off"
       />
       <Input
@@ -76,7 +76,7 @@ const LoginForm = () => {
         name="password"
         value={formValues.password}
         label="Password"
-        color="success"
+        color="primary"
         size="lg"
         variant="bordered"
         placeholder="Enter your password"
@@ -97,12 +97,12 @@ const LoginForm = () => {
         isInvalid={errorMessages.password !== ""}
         errorMessage={errorMessages.password}
         onChange={handleChange}
-        className="text-left"
+        className="text-left border border-accentDark rounded-xl"
         autoComplete="current-password"
       />
       <div className="text-center">
         <Button
-          color="success"
+          color="primary"
           variant="bordered"
           className="text-lg mt-6 w-full 500:w-1/2"
           onClick={handleSubmit}

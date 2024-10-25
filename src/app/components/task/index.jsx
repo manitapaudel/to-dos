@@ -1,9 +1,15 @@
 import { useContext } from "react";
-import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Checkbox,
+  useDisclosure,
+} from "@nextui-org/react";
 
 import { ModalContext } from "@/app/context/ModalContext";
 import { isDuplicate, setLocalStorage } from "@/app/utils";
-import { CheckIcon, EditIcon } from "@/app/components/icons";
+import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
 
 const Task = ({ singleTask }) => {
@@ -35,30 +41,36 @@ const Task = ({ singleTask }) => {
   };
 
   return (
-    <Card className="mt-4">
+    <Card className="mt-4 bg-baseDark bg-opacity-15 border px-3">
       <CardBody>
-        <div className="flex justify-between">
-          <p>{singleTask}</p>
-          <span className="flex items-center gap-1.5">
-            <Button
-              isIconOnly
-              color="success"
-              className="w-6 h-7"
-              aria-label="Done Task"
-              onClick={handleDelete}
-            >
-              <CheckIcon />
-            </Button>
-            <Button
-              isIconOnly
-              color="warning"
-              className="w-6 h-7"
-              aria-label="Edit task"
-              onPress={onOpen}
-            >
-              <EditIcon />
-            </Button>
-          </span>
+        <div className="">
+          <div className="flex items-start gap-2">
+            <Checkbox size="md" className="p-0 top-3" title="Mark as done" />
+            <p className="text-lg font-medium">{singleTask}</p>
+          </div>
+          <div className="flex justify-between mt-3">
+            <span className="flex items-center gap-1.5">
+              <Button
+                isIconOnly
+                className="bg-accentLight border border-accentDark text-white w-6 h-7"
+                aria-label="Delete Task"
+                onClick={handleDelete}
+                title="Delete the task"
+              >
+                <TrashIcon />
+              </Button>
+              <Button
+                isIconOnly
+                className="bg-primary border border-accentDark text-white w-6 h-7"
+                aria-label="Edit Task"
+                onPress={onOpen}
+                title="Edit the task"
+              >
+                <EditIcon />
+              </Button>
+            </span>
+            <span className="text-sm text-primary font-bold">10/25/2024</span>
+          </div>
         </div>
       </CardBody>
       <TaskModal

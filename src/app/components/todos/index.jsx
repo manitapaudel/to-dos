@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 
@@ -37,15 +38,15 @@ const ToDos = () => {
   };
 
   return (
-    <div className="px-5">
-      <div className="sm:w-2/3 lg:w-1/2 mx-auto my-32 border border-2 border-green-400 px-4 py-10 rounded-md">
+    <div className="text-baseDark font-inconsolata px-5">
+      <div className="bg-baseDark bg-opacity-5 sm:w-2/3 lg:w-1/2 mx-auto my-8 500:my-28 border-2 border-accentDark px-4 py-10 rounded-md">
         <div className="flex items-center justify-between">
-          <h1 className="font-semibold text-3xl">
+          <h1 className="font-caveat font-semibold text-primary text-3xl">
             To-<span>Dos</span>
           </h1>
           <Button
             variant="ghost"
-            color="success"
+            color="primary"
             startContent={<PlusIcon className={"w-4 h-4"} />}
             onPress={onOpen}
           >
@@ -57,16 +58,25 @@ const ToDos = () => {
           {taskList.length ? (
             taskList.map((task) => <Task key={task} singleTask={task} />)
           ) : (
-            <>
-              <h2 className="font-medium text-2xl">
-                Hey there! <span className="bg-green-300">Welcome.</span>
-              </h2>
-              <p className="text-lg mt-5">
-                Looks like you haven&apos;t listed your{" "}
-                <span className="bg-green-300">tasks</span> yet. Get started by
-                <span className="bg-green-300"> adding</span> one, right away!
-              </p>
-            </>
+            <div className="flex flex-col md:flex-row items-center gap-2 xl:gap-10">
+              <div className="relative shrink-0 w-64 h-64">
+                <Image
+                  src="/images/multitasking.svg"
+                  alt="A woman multitasking"
+                  fill
+                />
+              </div>
+              <div className="">
+                <h2 className="font-medium text-2xl">Hey there!</h2>
+                <p className="text-lg mt-5">
+                  Looks like you have a lot of{" "}
+                  <span className="bg-primary bg-opacity-40">tasks</span> at
+                  hand. Start by&nbsp;
+                  <span className="bg-primary bg-opacity-40">adding</span> one,
+                  right away!
+                </p>
+              </div>
+            </div>
           )}
         </div>
       </div>
