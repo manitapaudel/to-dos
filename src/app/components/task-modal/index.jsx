@@ -68,7 +68,6 @@ const TaskModal = ({
                 color={isInvalid ? "danger" : "primary"}
                 variant="bordered"
                 errorMessage={errorMessage}
-                onChange={(e) => setTask(e.target.value)}
               />
               <h2 className="font-semibold text-baseDark mt-2">
                 Please pick a due date
@@ -80,14 +79,6 @@ const TaskModal = ({
               />
             </ModalBody>
             <ModalFooter className="bg-baseDark bg-opacity-10">
-              <Button
-                color="danger"
-                variant="light"
-                onPress={onClose}
-                className="font-semibold"
-              >
-                Close
-              </Button>
               <Button
                 type="submit"
                 color="primary"
