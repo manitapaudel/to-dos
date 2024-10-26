@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
+  Calendar,
   Modal,
   ModalContent,
   ModalHeader,
@@ -8,8 +9,10 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 import { ModalContext } from "@/app/context/ModalContext";
+import { CalendarIcon } from "@/app/components/icons";
 
 const TaskModal = ({
   isOpen,
@@ -22,6 +25,8 @@ const TaskModal = ({
 }) => {
   const { task, setTask } = useContext(ModalContext);
 
+  const [date, setDate] = useState(today(getLocalTimeZone())); // To show today's marker on the calendar
+
   return (
     <Modal
       isOpen={isOpen}
@@ -32,8 +37,8 @@ const TaskModal = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1 text-baseDark bg-baseDark bg-opacity-10">
-              {isEditForm ? "Edit your Task" : "Create a New Task"}
+            <ModalHeader className="flex justify-between text-baseDark bg-baseDark bg-opacity-10">
+              <h1>{isEditForm ? "Edit your Task" : "Create a New Task"}</h1>
             </ModalHeader>
             <ModalBody className="bg-baseDark bg-opacity-10">
               <Input
@@ -50,6 +55,29 @@ const TaskModal = ({
                 errorMessage={errorMessage}
                 onChange={(e) => setTask(e.target.value)}
               />
+              <Input
+                isRequired
+                defaultValue=""
+                value={date}
+                type="text"
+                label="Due Date"
+                placeholder="MM/DD/YYYY"
+                endContent={<CalendarIcon className="w-4 h-4 text-primary" />}
+                className="mt-5 border border-accentDark rounded-xl"
+                isInvalid={isInvalid}
+                color={isInvalid ? "danger" : "primary"}
+                variant="bordered"
+                errorMessage={errorMessage}
+                onChange={(e) => setTask(e.target.value)}
+              />
+              <h2 className="font-semibold text-baseDark mt-2">
+                Please pick a due date
+              </h2>
+              <Calendar
+                aria-label="Date (Controlled)"
+                value={date}
+                onChange={setDate}
+              />
             </ModalBody>
             <ModalFooter className="bg-baseDark bg-opacity-10">
               <Button
@@ -61,6 +89,7 @@ const TaskModal = ({
                 Close
               </Button>
               <Button
+                type="submit"
                 color="primary"
                 variant="bordered"
                 onPress={onPressAction}
