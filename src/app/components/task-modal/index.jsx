@@ -9,7 +9,7 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { CalendarDate, parseDate } from "@internationalized/date";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 import { ModalContext } from "@/app/context/ModalContext";
 import { CalendarIcon } from "@/app/components/icons";
@@ -24,7 +24,8 @@ const TaskModal = ({
   initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
-  const [date, setDate] = useState(parseDate("2024-10-25"));
+
+  const [date, setDate] = useState(today(getLocalTimeZone())); // To show today's marker on the calendar
 
   return (
     <Modal
