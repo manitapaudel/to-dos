@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Card,
@@ -16,6 +16,26 @@ import { initialTaskState } from "@/app/page";
 const Task = ({ singleTask }) => {
   const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isTaskCompleted, setIsTaskCompleted] = useState(
+    singleTask.isCompleted
+  );
+
+  console.log(isTaskCompleted);
+
+  const handleCheckbox = (e) => {
+    console.log(e);
+    setIsTaskCompleted(e.target.checked);
+    const filteredTasks = taskList.filter((item) => item.id !== singleTask.id);
+    console.log(filteredTasks);
+
+    const updatedTasks = [
+      ...filteredTasks,
+      { ...singleTask, isCompleted: e.target.checked },
+    ];
+
+    setTaskList(updatedTasks);
+    setLocalStorage("tasks", updatedTasks);
+  };
 
   const onPressAction = () => {
     if (task.name === "") {
@@ -44,8 +64,20 @@ const Task = ({ singleTask }) => {
       <CardBody>
         <div className="">
           <div className="flex items-start gap-2">
-            <Checkbox size="md" className="p-0 top-3" title="Mark as done" />
-            <p className="text-lg font-medium">{singleTask.name}</p>
+            <Checkbox
+              size="md"
+              className="p-0 top-3"
+              title="Mark as done"
+              isSelected={isTaskCompleted}
+              onChange={handleCheckbox}
+            />
+            <p
+              className={`text-lg font-medium ${
+                singleTask.isCompleted ? "line-through" : ""
+              }`}
+            >
+              {singleTask.name}
+            </p>
           </div>
           <div className="flex justify-between mt-3">
             <span className="flex items-center gap-1.5">
