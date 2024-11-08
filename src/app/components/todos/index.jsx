@@ -9,6 +9,7 @@ import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
 import { PlusIcon } from "@/app/components/icons";
 import Task from "@/app/components/task";
 import TaskModal from "@/app/components/task-modal";
+import { initialTaskState } from "@/app/page";
 
 const ToDos = () => {
   const [isInvalid, setIsInvalid] = useState(false);
@@ -22,17 +23,14 @@ const ToDos = () => {
   }, [task]);
 
   const onPressAction = () => {
-    if (task === "") {
+    if (task.name === "") {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
-    } else if (isDuplicate(taskList, task)) {
-      setIsInvalid(true);
-      setErrorMessage("This task already exists");
     } else {
       const updatedTasks = [...taskList, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask("");
+      setTask(initialTaskState);
       onOpenChange(false);
     }
   };

@@ -11,25 +11,22 @@ import { ModalContext } from "@/app/context/ModalContext";
 import { isDuplicate, setLocalStorage } from "@/app/utils";
 import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
+import { initialTaskState } from "@/app/page";
 
 const Task = ({ singleTask }) => {
   const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const onPressAction = () => {
-    if (task === "") {
+    if (task.name === "") {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
-    } else if (isDuplicate(taskList, task)) {
-      // To check for duplicates, since our tasks themselves are ids and supposed to be unique
-      setIsInvalid(true);
-      setErrorMessage("This task already exists");
     } else {
       const filteredTasks = taskList.filter((item) => item !== singleTask);
       const updatedTasks = [...filteredTasks, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask("");
+      setTask(initialTaskState);
       onOpenChange(false);
     }
   };
@@ -46,7 +43,7 @@ const Task = ({ singleTask }) => {
         <div className="">
           <div className="flex items-start gap-2">
             <Checkbox size="md" className="p-0 top-3" title="Mark as done" />
-            <p className="text-lg font-medium">{singleTask}</p>
+            <p className="text-lg font-medium">{singleTask.name}</p>
           </div>
           <div className="flex justify-between mt-3">
             <span className="flex items-center gap-1.5">

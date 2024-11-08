@@ -9,10 +9,10 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { today, getLocalTimeZone } from "@internationalized/date";
+// import { today, getLocalTimeZone } from "@internationalized/date";
 
 import { ModalContext } from "@/app/context/ModalContext";
-import { CalendarIcon } from "@/app/components/icons";
+// import { CalendarIcon } from "@/app/components/icons";
 
 const TaskModal = ({
   isOpen,
@@ -25,7 +25,14 @@ const TaskModal = ({
 }) => {
   const { task, setTask } = useContext(ModalContext);
 
-  const [date, setDate] = useState(today(getLocalTimeZone())); // To show today's marker on the calendar
+  // const [date, setDate] = useState(today(getLocalTimeZone())); // To show today's marker on the calendar
+
+  const handleChange = (e) => {
+    setTask({
+      ...task,
+      name: e.target.value,
+    });
+  };
 
   return (
     <Modal
@@ -44,7 +51,7 @@ const TaskModal = ({
               <Input
                 isRequired
                 defaultValue={initialTaskState || ""}
-                value={task}
+                value={task.name}
                 type="text"
                 label="Task name"
                 placeholder="Enter your task here"
@@ -53,9 +60,9 @@ const TaskModal = ({
                 color={isInvalid ? "danger" : "primary"}
                 variant="bordered"
                 errorMessage={errorMessage}
-                onChange={(e) => setTask(e.target.value)}
+                onChange={handleChange}
               />
-              <Input
+              {/* <Input
                 isRequired
                 defaultValue=""
                 value={date}
@@ -76,7 +83,7 @@ const TaskModal = ({
                 aria-label="Date (Controlled)"
                 value={date}
                 onChange={setDate}
-              />
+              /> */}
             </ModalBody>
             <ModalFooter className="bg-baseDark bg-opacity-10">
               <Button
