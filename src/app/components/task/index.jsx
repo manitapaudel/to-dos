@@ -22,7 +22,9 @@ const Task = ({ singleTask }) => {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
     } else {
-      const filteredTasks = taskList.filter((item) => item !== singleTask);
+      const filteredTasks = taskList.filter(
+        (item) => item.id !== singleTask.id
+      );
       const updatedTasks = [...filteredTasks, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
@@ -32,7 +34,7 @@ const Task = ({ singleTask }) => {
   };
 
   const handleDelete = () => {
-    const filteredTasks = taskList.filter((item) => item !== singleTask);
+    const filteredTasks = taskList.filter((item) => item.id !== singleTask.id);
     setTaskList(filteredTasks);
     setLocalStorage("tasks", filteredTasks);
   };
