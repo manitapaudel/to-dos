@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Card,
@@ -7,35 +7,49 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
+import { initialTaskStateGenerator } from "@/app/page";
 import { ModalContext } from "@/app/context/ModalContext";
-import { isDuplicate, setLocalStorage } from "@/app/utils";
+import { setLocalStorage } from "@/app/utils";
 import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
 
 const Task = ({ singleTask }) => {
   const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isTaskCompleted, setIsTaskCompleted] = useState(
+    singleTask.isCompleted
+  );
+
+  const handleCheckbox = (e) => {
+    setIsTaskCompleted(e.target.checked);
+
+    const updatedTasks = taskList.map((item) =>
+      item.id === singleTask.id
+        ? { ...item, isCompleted: e.target.checked }
+        : item
+    );
+
+    setTaskList(updatedTasks);
+    setLocalStorage("tasks", updatedTasks);
+  };
 
   const onPressAction = () => {
-    if (task === "") {
+    if (task.name === "") {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
-    } else if (isDuplicate(taskList, task)) {
-      // To check for duplicates, since our tasks themselves are ids and supposed to be unique
-      setIsInvalid(true);
-      setErrorMessage("This task already exists");
     } else {
-      const filteredTasks = taskList.filter((item) => item !== singleTask);
-      const updatedTasks = [...filteredTasks, task];
+      const updatedTasks = taskList.map((item) =>
+        item.id === singleTask.id ? { ...item, name: task.name } : item
+      );
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask("");
+      setTask(initialTaskStateGenerator());
       onOpenChange(false);
     }
   };
 
   const handleDelete = () => {
-    const filteredTasks = taskList.filter((item) => item !== singleTask);
+    const filteredTasks = taskList.filter((item) => item.id !== singleTask.id);
     setTaskList(filteredTasks);
     setLocalStorage("tasks", filteredTasks);
   };
@@ -45,8 +59,20 @@ const Task = ({ singleTask }) => {
       <CardBody>
         <div className="">
           <div className="flex items-start gap-2">
-            <Checkbox size="md" className="p-0 top-3" title="Mark as done" />
-            <p className="text-lg font-medium">{singleTask}</p>
+            <Checkbox
+              size="md"
+              className="p-0 top-3"
+              title="Mark as done"
+              isSelected={isTaskCompleted}
+              onChange={handleCheckbox}
+            />
+            <p
+              className={`text-lg font-medium ${
+                singleTask.isCompleted ? "line-through" : ""
+              }`}
+            >
+              {singleTask.name}
+            </p>
           </div>
           <div className="flex justify-between mt-3">
             <span className="flex items-center gap-1.5">
@@ -76,7 +102,7 @@ const Task = ({ singleTask }) => {
       <TaskModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        isEditForm
+        isEditForm={true}
         initialTaskState={singleTask}
         onPressAction={onPressAction}
       />

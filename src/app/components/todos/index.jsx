@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 
+import { initialTaskStateGenerator } from "@/app/page";
 import { ModalContext } from "@/app/context/ModalContext";
-import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
+import { getLocalStorage, setLocalStorage } from "@/app/utils";
 import { PlusIcon } from "@/app/components/icons";
 import Task from "@/app/components/task";
 import TaskModal from "@/app/components/task-modal";
@@ -22,17 +23,14 @@ const ToDos = () => {
   }, [task]);
 
   const onPressAction = () => {
-    if (task === "") {
+    if (task.name === "") {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
-    } else if (isDuplicate(taskList, task)) {
-      setIsInvalid(true);
-      setErrorMessage("This task already exists");
     } else {
       const updatedTasks = [...taskList, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask("");
+      setTask(initialTaskStateGenerator());
       onOpenChange(false);
     }
   };
@@ -56,7 +54,7 @@ const ToDos = () => {
 
         <div className="mt-10">
           {taskList.length ? (
-            taskList.map((task) => <Task key={task} singleTask={task} />)
+            taskList.map((task) => <Task key={task.id} singleTask={task} />)
           ) : (
             <div className="flex flex-col md:flex-row items-center gap-2 xl:gap-10">
               <div className="relative shrink-0 w-64 h-64">
