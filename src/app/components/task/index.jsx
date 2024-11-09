@@ -7,11 +7,11 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
+import { initialTaskStateGenerator } from "@/app/page";
 import { ModalContext } from "@/app/context/ModalContext";
 import { setLocalStorage } from "@/app/utils";
 import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
-import { initialTaskStateGenerator } from "@/app/page";
 
 const Task = ({ singleTask }) => {
   const { task, setTask, taskList, setTaskList } = useContext(ModalContext);

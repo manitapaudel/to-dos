@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 
+import { initialTaskStateGenerator } from "@/app/page";
 import { ModalContext } from "@/app/context/ModalContext";
-import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
+import { getLocalStorage, setLocalStorage } from "@/app/utils";
 import { PlusIcon } from "@/app/components/icons";
 import Task from "@/app/components/task";
 import TaskModal from "@/app/components/task-modal";
-import { initialTaskStateGenerator } from "@/app/page";
 
 const ToDos = () => {
   const [isInvalid, setIsInvalid] = useState(false);
