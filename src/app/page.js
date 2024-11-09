@@ -9,7 +9,7 @@ import ToDos from "@/app/components/todos";
 
 export const initialTaskStateGenerator = () => ({
   name: "",
-  id: self.crypto.randomUUID(),
+  id: typeof window !== "undefined" ? crypto.randomUUID() : "",
   isCompleted: false,
 });
 
