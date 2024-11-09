@@ -54,7 +54,7 @@ const ToDos = () => {
 
         <div className="mt-10">
           {taskList.length ? (
-            taskList.map((task) => <Task key={task} singleTask={task} />)
+            taskList.map((task) => <Task key={task.id} singleTask={task} />)
           ) : (
             <div className="flex flex-col md:flex-row items-center gap-2 xl:gap-10">
               <div className="relative shrink-0 w-64 h-64">

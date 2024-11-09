@@ -38,10 +38,9 @@ const Task = ({ singleTask }) => {
       setIsInvalid(true);
       setErrorMessage("This field cannot be empty");
     } else {
-      const filteredTasks = taskList.filter(
-        (item) => item.id !== singleTask.id
+      const updatedTasks = taskList.map((item) =>
+        item.id === singleTask.id ? { ...item, name: task.name } : item
       );
-      const updatedTasks = [...filteredTasks, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
       setTask(initialTaskStateGenerator());
@@ -103,7 +102,7 @@ const Task = ({ singleTask }) => {
       <TaskModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        isEditForm
+        isEditForm={true}
         initialTaskState={singleTask}
         onPressAction={onPressAction}
       />

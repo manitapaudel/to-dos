@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Calendar,
   Modal,
@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 // import { today, getLocalTimeZone } from "@internationalized/date";
 
+import { initialTaskStateGenerator } from "@/app/page";
 import { ModalContext } from "@/app/context/ModalContext";
 // import { CalendarIcon } from "@/app/components/icons";
 
@@ -24,8 +25,18 @@ const TaskModal = ({
   initialTaskState,
 }) => {
   const { task, setTask } = useContext(ModalContext);
+  console.log(initialTaskState);
 
   // const [date, setDate] = useState(today(getLocalTimeZone())); // To show today's marker on the calendar
+
+  // Setting the initial task state when opening the modal in edit mode
+  useEffect(() => {
+    if (isEditForm && initialTaskState) {
+      setTask(initialTaskState); // previous task data for "editing" mode is on
+    } else {
+      setTask(initialTaskStateGenerator()); // a new task if "creating" mode is on
+    }
+  }, [isOpen, isEditForm]);
 
   const handleChange = (e) => {
     setTask({
@@ -42,7 +53,7 @@ const TaskModal = ({
       className="font-inconsolata"
     >
       <ModalContent>
-        {(onClose) => (
+        {() => (
           <>
             <ModalHeader className="flex justify-between text-baseDark bg-baseDark bg-opacity-10">
               <h1>{isEditForm ? "Edit your Task" : "Create a New Task"}</h1>
@@ -50,8 +61,7 @@ const TaskModal = ({
             <ModalBody className="bg-baseDark bg-opacity-10">
               <Input
                 isRequired
-                defaultValue={initialTaskState || ""}
-                value={task.name}
+                value={task.name || ""}
                 type="text"
                 label="Task name"
                 placeholder="Enter your task here"
