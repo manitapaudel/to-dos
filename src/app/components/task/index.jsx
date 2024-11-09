@@ -8,10 +8,10 @@ import {
 } from "@nextui-org/react";
 
 import { ModalContext } from "@/app/context/ModalContext";
-import { isDuplicate, setLocalStorage } from "@/app/utils";
+import { setLocalStorage } from "@/app/utils";
 import { EditIcon, TrashIcon } from "@/app/components/icons";
 import TaskModal from "@/app/components/task-modal";
-import { initialTaskState } from "@/app/page";
+import { initialTaskStateGenerator } from "@/app/page";
 
 const Task = ({ singleTask }) => {
   const { task, setTask, taskList, setTaskList } = useContext(ModalContext);
@@ -20,18 +20,14 @@ const Task = ({ singleTask }) => {
     singleTask.isCompleted
   );
 
-  console.log(isTaskCompleted);
-
   const handleCheckbox = (e) => {
-    console.log(e);
     setIsTaskCompleted(e.target.checked);
-    const filteredTasks = taskList.filter((item) => item.id !== singleTask.id);
-    console.log(filteredTasks);
 
-    const updatedTasks = [
-      ...filteredTasks,
-      { ...singleTask, isCompleted: e.target.checked },
-    ];
+    const updatedTasks = taskList.map((item) =>
+      item.id === singleTask.id
+        ? { ...item, isCompleted: e.target.checked }
+        : item
+    );
 
     setTaskList(updatedTasks);
     setLocalStorage("tasks", updatedTasks);
@@ -48,7 +44,7 @@ const Task = ({ singleTask }) => {
       const updatedTasks = [...filteredTasks, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask(initialTaskState);
+      setTask(initialTaskStateGenerator());
       onOpenChange(false);
     }
   };

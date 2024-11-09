@@ -7,15 +7,15 @@ import { getLocalStorage } from "@/app/utils";
 import { ModalContext } from "@/app/context/ModalContext";
 import ToDos from "@/app/components/todos";
 
-export const initialTaskState = {
+export const initialTaskStateGenerator = () => ({
   name: "",
   id: self.crypto.randomUUID(),
   isCompleted: false,
-};
+});
 
 const YourTodos = () => {
   const [taskList, setTaskList] = useState([]);
-  const [task, setTask] = useState(initialTaskState);
+  const [task, setTask] = useState(initialTaskStateGenerator());
   const router = useRouter();
 
   useEffect(() => {

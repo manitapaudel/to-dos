@@ -9,7 +9,7 @@ import { getLocalStorage, isDuplicate, setLocalStorage } from "@/app/utils";
 import { PlusIcon } from "@/app/components/icons";
 import Task from "@/app/components/task";
 import TaskModal from "@/app/components/task-modal";
-import { initialTaskState } from "@/app/page";
+import { initialTaskStateGenerator } from "@/app/page";
 
 const ToDos = () => {
   const [isInvalid, setIsInvalid] = useState(false);
@@ -30,7 +30,7 @@ const ToDos = () => {
       const updatedTasks = [...taskList, task];
       setTaskList(updatedTasks);
       setLocalStorage("tasks", updatedTasks);
-      setTask(initialTaskState);
+      setTask(initialTaskStateGenerator());
       onOpenChange(false);
     }
   };
